@@ -1,25 +1,22 @@
 package com.skilldistillery.filmquery.app;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
-import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
 
+	Scanner input = new Scanner(System.in);
 	DatabaseAccessor db = new DatabaseAccessorObject();
 
 	public static void main(String[] args) throws ClassNotFoundException {
-		System.out.println("DB test started.");
 		FilmQueryApp app = new FilmQueryApp();
-		app.test();
-//		app.launch();
+//		app.test();
+		app.launch();
 	}
 
 	private void test() {
@@ -28,15 +25,48 @@ public class FilmQueryApp {
 	}
 
 	private void launch() {
-		Scanner input = new Scanner(System.in);
-
-		startUserInterface(input);
-
-		input.close();
-	}
-
-	private void startUserInterface(Scanner input) {
+		menu();
 
 	}
-
+	
+	private void menu() {
+		DatabaseAccessorObject dao = new DatabaseAccessorObject();
+		int userInput = 0;
+		int filmId;
+		String filmKeyword;
+		Film filmIdResult;
+		List<Film> filmKeywordResult = new ArrayList<>();
+		
+		System.out.print("1. Look up a film by its id.\n2. Look up a film by a search keyword.\n3. Exit the application.\n>");
+		userInput = input.nextInt();
+		input.nextLine();
+		switch (userInput) {
+		case 1: System.out.print("Please enter the film id: ");
+				filmId = input.nextInt();
+				filmIdResult = dao.getFilmById(filmId);
+				
+				if (filmIdResult == null) {
+					System.out.println("Film is not found.");
+				}
+				else {
+					System.out.println(filmIdResult);
+				}
+			break;
+		case 2: System.out.print("Please enter a keyword to seach for: ");
+			filmKeyword = input.nextLine();
+			filmKeywordResult = dao.getFilmByKeyword(filmKeyword);
+			
+			if (filmKeywordResult == null) {
+				System.out.println("No matching films for the input keyword.");
+			}
+			else {
+				for (Film film : filmKeywordResult) {
+					System.out.println(film);
+					
+				}
+			}
+			break;
+		case 3: System.exit(0);
+		}
+	}
 }

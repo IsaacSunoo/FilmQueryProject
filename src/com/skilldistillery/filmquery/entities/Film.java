@@ -1,6 +1,7 @@
 package com.skilldistillery.filmquery.entities;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Film {
 	private int id;
@@ -8,32 +9,51 @@ public class Film {
 	private String desc;
 	private int releaseYear;
 	private int langId;
+	private String langName;
 	private int rentDur;
 	private double rentalRate;
 	private int length;
 	private double repCost;
 	private String rating;
 	private String features;
-	
+	private List<Actor> actors = new ArrayList<>();
+
 	public Film() {
 		
 	}
 	
 	public Film (int id, String title,  String desc, short releaseYear, 
-			 int langId, int rentDur, double rate, int length, double repCost, 
+			 int langId, String langName, int rentDur, double rate, int length, double repCost, 
 			 String rating, String features) {
 		this.id = id;
 		this.title = title;
 		this.desc = desc ;
 		this.releaseYear = releaseYear;
 		this.langId = langId;
+		this.langName = langName;
 		this.rentDur = rentDur;
 		this.rentalRate = rate;
 		this.length = length;
 		this.repCost = repCost;
 		this.rating = rating;
 		this.features = features;
-		
+	}
+	
+	public List<Actor> getActors() {
+		return actors;
+	}
+	
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+	
+
+	public String getLangName() {
+		return langName;
+	}
+
+	public void setLangName(String langName) {
+		this.langName = langName;
 	}
 
 	public int getId() {
@@ -191,10 +211,10 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film -- id: " + id + ", title: " + title + ", description: " + desc + ", releaseYear: "
-				+ releaseYear + ", languageId: " + langId + ", rentalDuration: " + rentDur + ", rentalRate: "
-				+ rentalRate + ", replacementCost: " + repCost + ", rating: " + rating + ", specialFeatures: "
-				+ features + ".";
+		return "Film -- id: " + id + ", title: " + title + ", description: " + desc + ", release year: "
+				+ releaseYear + ", language Id: " + langId + ", language Name: " + langName + ", rentalDuration: " + rentDur + ", rentalRate: "
+				+ rentalRate + ", replacement cost: " + repCost + ", rating: " + rating + ", special features: "
+				+ features + ", Actors: " + actors.toString() + ".";
 	}
 }
 
