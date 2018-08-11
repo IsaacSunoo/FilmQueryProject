@@ -19,7 +19,7 @@ public class FilmQueryApp {
 		System.out.println("DB test started.");
 		FilmQueryApp app = new FilmQueryApp();
 		app.test();
-		app.launch();
+//		app.launch();
 	}
 
 	private void test() {

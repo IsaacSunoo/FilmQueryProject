@@ -5,15 +5,36 @@ import java.util.Set;
 public class Film {
 	private int id;
 	private String title;
-	private String description;
+	private String desc;
 	private int releaseYear;
-	private short languageId;
-	private short rentalDuration;
+	private int langId;
+	private int rentDur;
 	private double rentalRate;
-	private short length;
-	private double replacementCost;
+	private int length;
+	private double repCost;
 	private String rating;
-	private Set specialFeatures;
+	private String features;
+	
+	public Film() {
+		
+	}
+	
+	public Film (int id, String title,  String desc, short releaseYear, 
+			 int langId, int rentDur, double rate, int length, double repCost, 
+			 String rating, String features) {
+		this.id = id;
+		this.title = title;
+		this.desc = desc ;
+		this.releaseYear = releaseYear;
+		this.langId = langId;
+		this.rentDur = rentDur;
+		this.rentalRate = rate;
+		this.length = length;
+		this.repCost = repCost;
+		this.rating = rating;
+		this.features = features;
+		
+	}
 
 	public int getId() {
 		return id;
@@ -31,12 +52,12 @@ public class Film {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDesc() {
+		return desc;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDesc(String description) {
+		this.desc = description;
 	}
 
 	public int getReleaseYear() {
@@ -47,29 +68,29 @@ public class Film {
 		this.releaseYear = releaseYear;
 	}
 
-	public int getLanguageId() {
-		return languageId;
+	public int getLangId() {
+		return langId;
 	}
 
-	public void setLanguageId(short languageId) {
-		this.languageId = languageId;
+	public void setLangId(int langId) {
+		this.langId = langId;
 	}
 	
 
-	public short getLength() {
+	public int getLength() {
 		return length;
 	}
 
-	public void setLength(short length) {
+	public void setLength(int length) {
 		this.length = length;
 	}
 
-	public int getRentalDuration() {
-		return rentalDuration;
+	public int getRentDur() {
+		return rentDur;
 	}
 
-	public void setRentalDuration(short rentalDuration) {
-		this.rentalDuration = rentalDuration;
+	public void setRentDur(int rentalDuration) {
+		this.rentDur = rentalDuration;
 	}
 
 	public double getRentalRate() {
@@ -80,12 +101,12 @@ public class Film {
 		this.rentalRate = rentalRate;
 	}
 
-	public double getReplacementCost() {
-		return replacementCost;
+	public double getRepCost() {
+		return repCost;
 	}
 
-	public void setReplacementCost(double replacementCost) {
-		this.replacementCost = replacementCost;
+	public void setRepCost(double replacementCost) {
+		this.repCost = replacementCost;
 	}
 
 	public String getRating() {
@@ -96,30 +117,30 @@ public class Film {
 		this.rating = rating;
 	}
 
-	public Set getSpecialFeatures() {
-		return specialFeatures;
+	public String getFeatures() {
+		return features;
 	}
 
-	public void setSpecialFeatures(Set specialFeatures) {
-		this.specialFeatures = specialFeatures;
+	public void setFeatures(String features) {
+		this.features = features;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((desc == null) ? 0 : desc.hashCode());
 		result = prime * result + id;
-		result = prime * result + languageId;
+		result = prime * result + langId;
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
 		result = prime * result + releaseYear;
-		result = prime * result + rentalDuration;
+		result = prime * result + rentDur;
 		long temp;
 		temp = Double.doubleToLongBits(rentalRate);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(replacementCost);
+		temp = Double.doubleToLongBits(repCost);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((specialFeatures == null) ? 0 : specialFeatures.hashCode());
+		result = prime * result + ((features == null) ? 0 : features.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -133,14 +154,14 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		if (description == null) {
-			if (other.description != null)
+		if (desc == null) {
+			if (other.desc != null)
 				return false;
-		} else if (!description.equals(other.description))
+		} else if (!desc.equals(other.desc))
 			return false;
 		if (id != other.id)
 			return false;
-		if (languageId != other.languageId)
+		if (langId != other.langId)
 			return false;
 		if (rating == null) {
 			if (other.rating != null)
@@ -149,16 +170,16 @@ public class Film {
 			return false;
 		if (releaseYear != other.releaseYear)
 			return false;
-		if (rentalDuration != other.rentalDuration)
+		if (rentDur != other.rentDur)
 			return false;
 		if (Double.doubleToLongBits(rentalRate) != Double.doubleToLongBits(other.rentalRate))
 			return false;
-		if (Double.doubleToLongBits(replacementCost) != Double.doubleToLongBits(other.replacementCost))
+		if (Double.doubleToLongBits(repCost) != Double.doubleToLongBits(other.repCost))
 			return false;
-		if (specialFeatures == null) {
-			if (other.specialFeatures != null)
+		if (features == null) {
+			if (other.features != null)
 				return false;
-		} else if (!specialFeatures.equals(other.specialFeatures))
+		} else if (!features.equals(other.features))
 			return false;
 		if (title == null) {
 			if (other.title != null)
@@ -170,10 +191,10 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film -- id: " + id + ", title: " + title + ", description: " + description + ", releaseYear: "
-				+ releaseYear + ", languageId: " + languageId + ", rentalDuration: " + rentalDuration + ", rentalRate: "
-				+ rentalRate + ", replacementCost: " + replacementCost + ", rating: " + rating + ", specialFeatures: "
-				+ specialFeatures + ".";
+		return "Film -- id: " + id + ", title: " + title + ", description: " + desc + ", releaseYear: "
+				+ releaseYear + ", languageId: " + langId + ", rentalDuration: " + rentDur + ", rentalRate: "
+				+ rentalRate + ", replacementCost: " + repCost + ", rating: " + rating + ", specialFeatures: "
+				+ features + ".";
 	}
 }
 
