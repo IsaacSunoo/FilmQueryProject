@@ -28,7 +28,7 @@ public class FilmQueryApp {
 		menu();
 
 	}
-	
+
 	private void menu() {
 		DatabaseAccessorObject dao = new DatabaseAccessorObject();
 		int userInput = 0;
@@ -36,37 +36,40 @@ public class FilmQueryApp {
 		String filmKeyword;
 		Film filmIdResult;
 		List<Film> filmKeywordResult = new ArrayList<>();
-		
-		System.out.print("1. Look up a film by its id.\n2. Look up a film by a search keyword.\n3. Exit the application.\n>");
-		userInput = input.nextInt();
-		input.nextLine();
-		switch (userInput) {
-		case 1: System.out.print("Please enter the film id: ");
+
+		do {
+			System.out.print(
+					"1. Look up a film by its id.\n2. Look up a film by a search keyword.\n3. Exit the application.\n>");
+			userInput = input.nextInt();
+			input.nextLine();
+			switch (userInput) {
+			case 1:
+				System.out.print("Please enter the film id: ");
 				filmId = input.nextInt();
 				filmIdResult = dao.getFilmById(filmId);
-				
+
 				if (filmIdResult == null) {
 					System.out.println("Film is not found.");
-				}
-				else {
+				} else {
 					System.out.println(filmIdResult);
 				}
-			break;
-		case 2: System.out.print("Please enter a keyword to seach for: ");
-			filmKeyword = input.nextLine();
-			filmKeywordResult = dao.getFilmByKeyword(filmKeyword);
-			
-			if (filmKeywordResult == null) {
-				System.out.println("No matching films for the input keyword.");
-			}
-			else {
-				for (Film film : filmKeywordResult) {
-					System.out.println(film);
-					
+				break;
+			case 2:
+				System.out.print("Please enter a keyword to seach for: ");
+				filmKeyword = input.nextLine();
+				filmKeywordResult = dao.getFilmByKeyword(filmKeyword);
+
+				if (filmKeywordResult == null || dao.getFilmByKeyword(filmKeyword) == null) {
+					System.out.println("No matching films for the input keyword.");
+				} else {
+					for (Film film : filmKeywordResult) {
+						System.out.println(film);
+					}
 				}
+				break;
+			case 3:
+				System.exit(0);
 			}
-			break;
-		case 3: System.exit(0);
-		}
+		} while (userInput < 3 && userInput > 0);
 	}
 }
