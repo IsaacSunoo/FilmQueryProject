@@ -54,6 +54,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 	public List<Film> getFilmsByActorId(int actorId) {
 		List<Film> films = new ArrayList<>();
+		String actor;
 		try {
 			Connection conn = DriverManager.getConnection(URL, "student", "student");
 			String sql = "SELECT f.id, title, description, release_year, language_id, rental_duration, ";
@@ -75,8 +76,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				double repCost = rs.getDouble(10);
 				String rating = rs.getString(11);
 				String features = rs.getString(12);
+				actor = rs.getString(1);
 				Film film = new Film(id, title, desc, releaseYear, langId, langName, rentDur, rentalRate, length, repCost, rating,
-						features);
+						features, actor);
 				films.add(film);
 			}
 
@@ -186,6 +188,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	public List<Film> getFilmByKeyword(String input) {
 		List<Film> films = new ArrayList<>();
 		String languageResult = null;
+		List <Actor> actorsList = null;
 		String sql = "SELECT id, title, description, release_year, language_id, rental_duration,"
 				+ " rental_rate, length, replacement_cost, rating, special_features FROM film "
 				+ "WHERE (title LIKE ? OR description LIKE ?)";
@@ -209,9 +212,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				String rating = rs.getString(10);
 				String features = rs.getString(11);
 				languageResult = getLanguage(rs.getInt(5));
+				actorsList = getActorsByFilmId(1);
 				
 				Film film = new Film(id, title, desc, releaseYear, langId, languageResult, rentDur, rentalRate, length, repCost, rating,
-						features);
+						features, actorsList);
 				films.add(film);
 			}
 			rs.close();

@@ -17,6 +17,7 @@ public class Film {
 	private String rating;
 	private String features;
 	private List<Actor> actors = new ArrayList<>();
+	private String actor;
 
 	public Film() {
 		
@@ -24,7 +25,7 @@ public class Film {
 	
 	public Film (int id, String title,  String desc, short releaseYear, 
 			 int langId, String langName, int rentDur, double rate, int length, double repCost, 
-			 String rating, String features) {
+			 String rating, String features, String actor) {
 		this.id = id;
 		this.title = title;
 		this.desc = desc ;
@@ -37,6 +38,25 @@ public class Film {
 		this.repCost = repCost;
 		this.rating = rating;
 		this.features = features;
+		this.actor = actor;
+	}
+	
+	public Film (int id, String title,  String desc, short releaseYear, 
+			 int langId, String langName, int rentDur, double rate, int length, double repCost, 
+			 String rating, String features, List<Actor> actors) {
+		this.id = id;
+		this.title = title;
+		this.desc = desc ;
+		this.releaseYear = releaseYear;
+		this.langId = langId;
+		this.langName = langName;
+		this.rentDur = rentDur;
+		this.rentalRate = rate;
+		this.length = length;
+		this.repCost = repCost;
+		this.rating = rating;
+		this.features = features;
+		this.actors = actors;
 	}
 	
 	public List<Actor> getActors() {
