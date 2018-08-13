@@ -59,12 +59,12 @@ public class FilmQueryApp {
 				filmKeyword = input.nextLine();
 				filmKeywordResult = dao.getFilmByKeyword(filmKeyword);
 
-				if (filmKeywordResult == null || dao.getFilmByKeyword(filmKeyword) == null) {
-					System.out.println("No matching films for the input keyword.");
-				} else {
+				if (!(filmKeywordResult.isEmpty())) {
 					for (Film film : filmKeywordResult) {
 						System.out.println(film);
 					}
+				} else {
+					System.out.println("No matching films for the input keyword.");
 				}
 				break;
 			case 3:
